@@ -1,43 +1,45 @@
 import React from "react";
+import Aside, { NoteType } from "./components/Aside";
+import NoteForm from "./components/NoteForm";
+import Layout from "./layout/Layout";
 
 function App() {
+  const [notes, setNotes] = React.useState<NoteType[]>([
+    {
+      id: 1,
+      image: "chiaki.jpg",
+      name: "Get Chiaki",
+      text: "",
+      status: "waiting",
+    },
+    {
+      id: 2,
+      image: "chiaki.jpg",
+      name: "Take down shogun",
+      text: "",
+      status: "waiting",
+    },
+    {
+      id: 3,
+      image: "chiaki.jpg",
+      name: "Remember the Aiden Pearce Story",
+      text: "",
+      status: "waiting",
+    },
+    {
+      id: 4,
+      image: "chiaki.jpg",
+      name: "Rerun LMR",
+      text: "ketrin ketrin ketrin ketrin ketrin ketrin ketrin ketrin ketrin ketrin ketrin ketrin ketrin",
+      status: "done",
+    },
+  ]);
+  const [activeNote, setActiveNote] = React.useState<NoteType>(notes[0]);
+
   return (
-    <div>
-      <header>
-        <div className="logo">ToDo</div>
-      </header>
-
-      <aside>
-        <div className="aside__item search">
-          <input placeholder="Поиск..." type="text" className="search__input" />
-        </div>
-        <div className="aside__item add">+ Добавить</div>
-        <div className="aside__item note active done">Dashboard</div>
-        <div className="aside__item note pending">Dashboard</div>
-        <div className="aside__item note waiting">Dashboard</div>
-        <div className="aside__item note done">Dashboard</div>
-      </aside>
-
-      <main className="page-wrapper">
-        <div className="note">
-          <div className="note__avatar">
-            <img src="/chiaki.jpg" alt="" />
-          </div>
-          <div className="note__name">Win the shogun raiden battle</div>
-          <div className="note__text">
-            I will crush Ei and her doll. I will abolish the vision hunt decree
-          </div>
-          <div className="note__status-list">
-            <div className="note__status-btn waiting">Ожидает</div>
-            <div className="note__status-btn pending">В процессе</div>
-            <div className="note__status-btn active done">Выполнено</div>
-          </div>
-          <div className="note__danger-zone">
-            <div className="note__danger-btn remove">Удалить</div>
-          </div>
-        </div>
-      </main>
-    </div>
+    <Layout notes={notes} switchNote={setActiveNote}>
+      <NoteForm note={activeNote} />
+    </Layout>
   );
 }
 
