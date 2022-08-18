@@ -1,4 +1,5 @@
 import React from "react";
+import { NotesContext } from "../contexts/NotesContext";
 import { NoteType } from "./Aside";
 
 interface NoteListProps {
@@ -7,11 +8,8 @@ interface NoteListProps {
   onNoteClick: (note: NoteType) => void;
 }
 
-const NoteList: React.FC<NoteListProps> = ({
-  onNoteClick,
-  notes,
-  noteClassName,
-}) => {
+const NoteList: React.FC<NoteListProps> = ({ onNoteClick, noteClassName }) => {
+  const { activeNote, notes } = React.useContext(NotesContext);
   return (
     <>
       {notes.map((note) => (
@@ -20,9 +18,11 @@ const NoteList: React.FC<NoteListProps> = ({
           onClick={() => {
             onNoteClick(note);
           }}
-          className={`${noteClassName}  ${note.status}}`}
+          className={`${noteClassName}  ${note.status} ${
+            note.active && "active"
+          }`}
         >
-          Dashboard
+          {note.name}
         </div>
       ))}
     </>

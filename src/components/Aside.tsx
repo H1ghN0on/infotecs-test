@@ -1,4 +1,5 @@
 import React from "react";
+import { NotesContext } from "../contexts/NotesContext";
 import NoteList from "./NoteList";
 
 export type NoteType = {
@@ -7,22 +8,31 @@ export type NoteType = {
   name: string;
   text: string;
   status: "pending" | "done" | "waiting";
+  active: boolean;
 };
 
-interface AsideProps {
-  notes: NoteType[];
-  switchNote: (note: NoteType) => void;
-}
+const Aside = () => {
+  const notesContext = React.useContext(NotesContext);
 
-const Aside: React.FC<AsideProps> = ({ notes, switchNote }) => {
   const [searchValue, setSearchValue] = React.useState<string>("");
 
   const searchedNotes = React.useMemo(() => {
-    return notes.filter((note) => note.name.includes(searchValue));
-  }, [notes, searchValue]);
+    return notesContext.notes.filter((note) => note.name.includes(searchValue));
+  }, [notesContext.notes, searchValue]);
 
   const handleSearchValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
+  };
+
+  const handleNoteClick = (note: NoteType) => {
+    notesContext.setContext({
+      ...notesContext,
+      notes: notesContext.notes.map((_note) =>
+        _note.id === note.id
+          ? { ..._note, active: true }
+          : { ..._note, active: false }
+      ),
+    });
   };
 
   return (
@@ -39,7 +49,7 @@ const Aside: React.FC<AsideProps> = ({ notes, switchNote }) => {
       <NoteList
         noteClassName="aside__item note"
         notes={searchedNotes}
-        onNoteClick={switchNote}
+        onNoteClick={handleNoteClick}
       />
     </aside>
   );

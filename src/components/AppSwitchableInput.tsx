@@ -17,18 +17,20 @@ const AppSwitchableInput: React.FC<AppSwitchableInputProps> = ({
   inputClassName,
 }) => {
   const inputRef = React.useRef(null);
+  const [inputValue, setInputValue] = React.useState<string>(value);
   const [isInputActive, setInputActive] = React.useState<boolean>(false);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { value } = e.target;
-    if (value) onChange(value);
+    if (value) setInputValue(value);
   };
 
   useOutsider(inputRef, () => {
     if (isInputActive) {
       setInputActive(false);
+      onChange(inputValue);
     }
   });
 
@@ -37,8 +39,8 @@ const AppSwitchableInput: React.FC<AppSwitchableInputProps> = ({
       return (
         <textarea
           className={inputClassName}
-          ref={() => inputRef}
-          value={value}
+          ref={inputRef}
+          value={inputValue}
           onChange={handleInputChange}
         />
       );
@@ -46,9 +48,9 @@ const AppSwitchableInput: React.FC<AppSwitchableInputProps> = ({
       return (
         <input
           className={inputClassName}
-          ref={() => inputRef}
+          ref={inputRef}
           type="text"
-          value={value}
+          value={inputValue}
           onChange={handleInputChange}
         />
       );

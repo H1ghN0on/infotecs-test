@@ -4,6 +4,7 @@ const useOutsider = (ref: React.RefObject<any>, handler: (e?: any) => void) => {
   React.useEffect(() => {
     const handleOutsideClick = (e: MouseEvent | TouchEvent) => {
       if (ref.current && !ref.current.contains(e.target)) {
+        console.log("what");
         handler(e);
       }
     };
