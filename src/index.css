@@ -1,13 +1,187 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+body {
+  background: #f5f5f5;
+  font-size: 16px;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  font-size: 1.6em;
+  font-weight: bold;
+  text-shadow: 0 0 2px #733bff;
+  padding: 0 35px;
+  background: white;
+  color: #5b30d5;
+  -webkit-box-shadow: 0px 4px 8px 0px rgba(181, 86, 247, 0.2);
+  -moz-box-shadow: 0px 4px 8px 0px rgba(181, 86, 247, 0.2);
+  box-shadow: 0px 4px 8px 0px rgba(181, 86, 247, 0.2);
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+aside {
+  position: fixed;
+  border-right: 2px solid #b7a6e8;
+  outline: none;
+  padding: 0px 30px;
+  min-width: 15vw;
+  height: 100vh;
+  padding-top: 20px;
+}
+
+aside > .aside__item {
+  margin-top: 25px;
+  padding: 10px;
+  background: #b7a6e8;
+  border-radius: 15px;
+}
+
+.aside__item.note {
+  -webkit-box-shadow: 0px 0px 8px 0px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 0px 0px 8px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: 0px 0px 8px 0px rgba(34, 60, 80, 0.2);
+  background: white;
+}
+
+aside .add {
+  text-align: center;
+  background: none;
+  color: #5b30d5;
+  font-weight: bold;
+  padding: 0;
+}
+
+aside :first-child {
+  margin-top: 0;
+}
+
+aside .search input {
+  outline: none;
+  width: 100%;
+  border: none;
+  color: white;
+  background-color: inherit;
+  outline: none;
+  font-family: inherit;
+}
+
+aside .aside__item.note.active {
+  color: white;
+}
+
+aside .aside__item.note.done.active {
+  background: green;
+}
+
+aside .aside__item.note.pending.active {
+  background: blue;
+}
+
+aside .aside__item.note.waiting.active {
+  background: grey;
+}
+
+aside .aside__item.note {
+  background: white;
+}
+
+aside .aside__item.done {
+  color: green;
+}
+
+aside .aside__item.pending {
+  color: blue;
+}
+
+aside .aside__item.waiting {
+  color: grey;
+}
+
+.page-wrapper {
+  margin-top: 80px;
+  margin-left: calc(15vw + 60px);
+}
+
+.note {
+  padding: 40px;
+}
+
+.note__avatar img {
+  width: 225px;
+  height: 225px;
+  border-radius: 50%;
+}
+
+.note__name {
+  color: #5b30d5;
+  font-size: 1.8em;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.note__text {
+  margin-top: 20px;
+  color: #5b30d5;
+}
+
+.note__status-list {
+  display: flex;
+  justify-content: space-between;
+  width: 30vw;
+  margin-top: 20px;
+}
+
+.note__status-btn {
+  padding: 15px 25px;
+  background: white;
+  border: 1px solid #b7a6e8;
+  outline: none;
+  border-radius: 25px;
+}
+
+.active {
+  color: white;
+  border: none;
+}
+
+.done.active {
+  background: green;
+}
+
+.pending.active {
+  background: blue;
+}
+
+.waiting.active {
+  background: grey;
+}
+
+.note__danger-zone {
+  display: flex;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid silver;
+}
+
+.note__danger-btn {
+  padding: 15px 25px;
+  background: red;
+  border-radius: 25px;
+  color: white;
 }
