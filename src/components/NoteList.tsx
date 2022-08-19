@@ -8,8 +8,11 @@ interface NoteListProps {
   onNoteClick: (note: NoteType) => void;
 }
 
-const NoteList: React.FC<NoteListProps> = ({ onNoteClick, noteClassName }) => {
-  const { activeNote, notes } = React.useContext(NotesContext);
+const NoteList: React.FC<NoteListProps> = ({
+  notes,
+  onNoteClick,
+  noteClassName,
+}) => {
   return (
     <>
       {notes.map((note) => (
@@ -22,7 +25,7 @@ const NoteList: React.FC<NoteListProps> = ({ onNoteClick, noteClassName }) => {
             note.active && "active"
           }`}
         >
-          {note.name}
+          {note.name ? note.name : "Без названия"}
         </div>
       ))}
     </>

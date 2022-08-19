@@ -17,7 +17,9 @@ const Aside = () => {
   const [searchValue, setSearchValue] = React.useState<string>("");
 
   const searchedNotes = React.useMemo(() => {
-    return notesContext.notes.filter((note) => note.name.includes(searchValue));
+    return notesContext.notes.filter((note) =>
+      note.name.toLowerCase().includes(searchValue.toLowerCase())
+    );
   }, [notesContext.notes, searchValue]);
 
   const handleSearchValue = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,6 +37,25 @@ const Aside = () => {
     });
   };
 
+  const handleNoteAddClick = () => {
+    const note = {
+      id: Date.now(),
+      image: "",
+      name: "",
+      text: "",
+      status: "waiting" as "waiting",
+      active: true,
+    };
+
+    notesContext.setContext({
+      ...notesContext,
+      notes: [
+        note,
+        ...notesContext.notes.map((_note) => ({ ..._note, active: false })),
+      ],
+    });
+  };
+
   return (
     <aside>
       <div className="aside__item search">
@@ -45,6 +66,9 @@ const Aside = () => {
           type="text"
           className="search__input"
         />
+      </div>
+      <div onClick={handleNoteAddClick} className="aside__item add">
+        Добавить
       </div>
       <NoteList
         noteClassName="aside__item note"

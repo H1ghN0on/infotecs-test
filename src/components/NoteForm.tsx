@@ -2,7 +2,6 @@ import React from "react";
 import { NotesContext } from "../contexts/NotesContext";
 import AppSwitchableInput from "./AppSwitchableInput";
 import { NoteType } from "./Aside";
-import NoteFormAvatar from "./NoteFormAvatar";
 import NoteFormDangerZone from "./NoteFormDangerZone";
 import NoteFormStatusList from "./NoteFormStatusList";
 
@@ -56,7 +55,7 @@ const NoteForm: React.FC<NoteFormProps> = ({ activeNote }) => {
   };
 
   const handleNoteRemove = () => {
-    const notes = notesContext.notes.filter((note) => note.active);
+    const notes = notesContext.notes.filter((note) => !note.active);
 
     notesContext.setContext({
       ...notesContext,
@@ -66,22 +65,33 @@ const NoteForm: React.FC<NoteFormProps> = ({ activeNote }) => {
 
   return (
     <div className="note">
-      <NoteFormAvatar
+      {/* <NoteFormAvatar
         className="note__avatar"
         onChange={handleNoteImageChange}
         src={activeNote.image}
+      /> */}
+      <div className="note__info">
+        <AppSwitchableInput
+          value={activeNote.name}
+          onChange={handleNoteNameChange}
+          spanClassName="note__name"
+          inputClassName="note__input note__name-input"
+          placeholder="Название..."
+        />
+        <AppSwitchableInput
+          value={activeNote.text}
+          onChange={handleNoteTextChange}
+          spanClassName="note__text"
+          inputClassName="note__input note__text-input"
+          textarea
+          placeholder="Описание..."
+        />
+      </div>
+
+      <NoteFormStatusList
+        status={activeNote.status}
+        onStatusChange={handleNoteStatusChange}
       />
-      <AppSwitchableInput
-        value={activeNote.name}
-        onChange={handleNoteNameChange}
-        spanClassName={"note__name"}
-      />
-      <AppSwitchableInput
-        value={activeNote.text}
-        onChange={handleNoteTextChange}
-        spanClassName={"note__text"}
-      />
-      <NoteFormStatusList onStatusChange={handleNoteStatusChange} />
       <NoteFormDangerZone onRemove={handleNoteRemove} />
     </div>
   );

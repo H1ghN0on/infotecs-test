@@ -8,9 +8,9 @@ interface NoteFormDangerZoneProps {
 const NoteFormDangerZone: React.FC<NoteFormDangerZoneProps> = ({
   onRemove,
 }) => {
-  const handleRemoveButtonClick = (
-    e: React.MouseEvent<HTMLButtonElement>
-  ) => {};
+  const handleRemoveButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    onRemove();
+  };
 
   return (
     <div className="note__danger-zone">

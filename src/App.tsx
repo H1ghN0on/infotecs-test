@@ -1,6 +1,6 @@
 import React from "react";
 import NoteForm from "./components/NoteForm";
-import { NotesContext, NotesContextProvider } from "./contexts/NotesContext";
+import { NotesContext } from "./contexts/NotesContext";
 import Layout from "./layout/Layout";
 
 function App() {

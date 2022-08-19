@@ -7,6 +7,7 @@ interface AppSwitchableInputProps {
   textarea?: boolean;
   spanClassName?: string;
   inputClassName?: string;
+  placeholder?: string;
 }
 
 const AppSwitchableInput: React.FC<AppSwitchableInputProps> = ({
@@ -15,33 +16,53 @@ const AppSwitchableInput: React.FC<AppSwitchableInputProps> = ({
   textarea,
   spanClassName,
   inputClassName,
+  placeholder,
 }) => {
   const inputRef = React.useRef(null);
-  const [inputValue, setInputValue] = React.useState<string>(value);
-  const [isInputActive, setInputActive] = React.useState<boolean>(false);
+
+  const [isInputActive, setInputActive] = React.useState<boolean>(!!value);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
+    setInputActive(true);
     const { value } = e.target;
-    if (value) setInputValue(value);
+
+    onChange(value);
+  };
+
+  const handleTextAreaResize = (
+    e: React.KeyboardEvent<HTMLTextAreaElement>
+  ) => {
+    e.currentTarget.style.height = "inherit";
+    e.currentTarget.style.height = `${e.currentTarget.scrollHeight}px`;
+  };
+
+  const handleTextAreaFocus = (e: React.FocusEvent<HTMLTextAreaElement>) => {
+    const val = e.target.value;
+    e.target.value = "";
+    e.target.value = val;
+    e.currentTarget.style.height = `${e.currentTarget.scrollHeight}px`;
   };
 
   useOutsider(inputRef, () => {
     if (isInputActive) {
       setInputActive(false);
-      onChange(inputValue);
     }
   });
 
-  if (isInputActive) {
+  if (!value || isInputActive) {
     if (textarea) {
       return (
         <textarea
           className={inputClassName}
           ref={inputRef}
-          value={inputValue}
+          value={value}
           onChange={handleInputChange}
+          autoFocus
+          onKeyDown={handleTextAreaResize}
+          onFocus={handleTextAreaFocus}
+          placeholder={placeholder}
         />
       );
     } else {
@@ -50,8 +71,11 @@ const AppSwitchableInput: React.FC<AppSwitchableInputProps> = ({
           className={inputClassName}
           ref={inputRef}
           type="text"
-          value={inputValue}
+          value={value}
           onChange={handleInputChange}
+          autoFocus
+          multiple
+          placeholder={placeholder}
         />
       );
     }
