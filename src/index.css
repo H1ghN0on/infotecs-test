@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap");
 
+:root {
+  --aside-width: 200px;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -46,17 +50,27 @@ header {
   align-items: center;
 }
 
-aside {
-  position: fixed;
-  border-right: 2px solid #b7a6e8;
-  outline: none;
-  padding: 0px 30px;
-  width: 15vw;
-  height: 100vh;
-  padding-top: 20px;
+.main-wrapper {
+  display: flex;
+  margin-top: 80px;
 }
 
-aside > .aside__item {
+aside {
+  position: fixed;
+  height: 100%;
+  overflow-y: auto;
+  scrollbar-width: thin; /* "auto" or "thin" */
+  scrollbar-color: #b7a6e8 silver; /* scroll thumb and track */
+}
+
+.aside__content {
+  position: relative;
+  padding: 0 30px;
+  padding-top: 20px;
+  padding-bottom: 100px;
+}
+
+.aside__content > .aside__item {
   margin-top: 25px;
   padding: 10px;
   background: #b7a6e8;
@@ -74,7 +88,7 @@ aside > .aside__item {
   background: white;
 }
 
-aside .add {
+.aside__content .add {
   text-align: center;
   background: none;
   color: #5b30d5;
@@ -82,11 +96,11 @@ aside .add {
   padding: 0;
 }
 
-aside :first-child {
+.aside__content :first-child {
   margin-top: 0;
 }
 
-aside .search input {
+.aside__content .search input {
   outline: none;
   width: 100%;
   border: none;
@@ -96,41 +110,50 @@ aside .search input {
   font-family: inherit;
 }
 
-aside .aside__item.note.active {
+.aside__item.note.active {
   color: white;
 }
 
-aside .aside__item.note.done.active {
+.aside__item.note.done.active {
   background: green;
 }
 
-aside .aside__item.note.pending.active {
+.aside__item.note.pending.active {
   background: blue;
 }
 
-aside .aside__item.note.waiting.active {
+.aside__item.note.waiting.active {
   background: grey;
 }
 
-aside .aside__item.note {
+.aside__content .aside__item.note {
   background: white;
 }
 
-aside .aside__item.done {
+.aside__item.done {
   color: green;
 }
 
-aside .aside__item.pending {
+.aside__item.pending {
   color: blue;
 }
-
-aside .aside__item.waiting {
+.aside__item.waiting {
   color: grey;
 }
 
+.aside__drag-border {
+  min-height: 100vh;
+  width: 3px;
+  height: 100%;
+  background: #b7a6e8;
+  cursor: ew-resize;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
 .page-wrapper {
-  margin-top: 80px;
-  margin-left: calc(15vw + 60px);
+  width: 100%;
 }
 
 .note {
