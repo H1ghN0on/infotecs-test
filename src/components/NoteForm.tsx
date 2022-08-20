@@ -12,8 +12,13 @@ interface NoteFormProps {
   activeNote: NoteType;
 }
 
+//Форма для редактирования записи. Получает на вход выбранную пользователем запись.
+//Нужно для того, чтобы удостовериться в наличии выбранной записи
+
 const NoteForm: React.FC<NoteFormProps> = ({ activeNote }) => {
   const notesContext = React.useContext(NotesContext);
+
+  //Хук записей (подробнее в useNotesContext)
   const { updateNoteName, updateNoteText, updateNoteStatus, removeNote } =
     useNotesContext(notesContext);
 

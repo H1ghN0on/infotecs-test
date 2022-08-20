@@ -6,6 +6,12 @@ interface LayoutProps {
   children: React.ReactNode;
 }
 
+//Макет страницы
+//Здесь обрабатываются данные о ширине сайдбара и, соответственно, левому отступу главной части
+
+//(На самом деле макет в данном приложении не нужен, но если, вдруг, приложение будет расширяться,
+//то его наличие здесь необходимо)
+
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const asideRef = React.useRef(null);
   const { resizableWidth, startResizing } = useResizable(

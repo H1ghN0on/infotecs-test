@@ -12,12 +12,16 @@ interface AsideProps {
   startResizing: (e: any) => void;
 }
 
+//Компонент сайдбара. Получает на вход текущую ширину и функцию, менящую текущую ширину
+
 const Aside = React.forwardRef<HTMLBaseElement, AsideProps>((props, ref) => {
   const notesContext = React.useContext(NotesContext);
+  //Хук записей (подробнее в useNotesContext)
   const { addNewNote, setActiveNote, notes } = useNotesContext(notesContext);
 
   const [searchValue, setSearchValue] = React.useState<string>("");
 
+  //Хук поиска (подробнее в useSearch)
   const { checkSearched, searchedValues } = useSearch(
     searchValue,
     notes,

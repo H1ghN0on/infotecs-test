@@ -1,6 +1,8 @@
 import React from "react";
 import { NotesContext } from "../contexts/NotesContext";
 
+//Комопонент неактивной формы. Отображается в том случае, если пользователем не была выбрана заметка
+
 const NoteFormInactive = () => {
   const { notes } = React.useContext(NotesContext);
 

@@ -6,10 +6,15 @@ interface NoteFormStatusListProps {
   onStatusChange: (status: "pending" | "done" | "waiting") => void;
 }
 
+//Компонент выбора статуса. Один из составляющих формы редактирования записи.
+//Получает на вход текущий статус записи и функцию изменения статуса.
+//Статус является всегда одной из трех строк: "pending", "done" или "waiting".
+
 const NoteFormStatusList: React.FC<NoteFormStatusListProps> = ({
   onStatusChange,
   status,
 }) => {
+  //Статус меняется в зависимости от имени элемента, по которому пользователь нажал
   const handleStatusClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     onStatusChange(
       (e.target as HTMLButtonElement).name as "pending" | "done" | "waiting"

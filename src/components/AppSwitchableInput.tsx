@@ -10,6 +10,8 @@ interface AppSwitchableInputProps {
   placeholder?: string;
 }
 
+//Базовый переключаемый инпут приложения. В зависимости от состояния может быть инпутом или простым текстом
+
 const AppSwitchableInput: React.FC<AppSwitchableInputProps> = ({
   onChange,
   value,
@@ -31,6 +33,10 @@ const AppSwitchableInput: React.FC<AppSwitchableInputProps> = ({
     onChange(value);
   };
 
+  //Высота Textarea должна изменяться в зависимости от размера введённых данных
+  //При каждом изменении внутри textarea высчитывается полная высота элемента (включая невидимую часть). Это значение
+  //становится истинной высотой элемента
+
   const handleTextAreaResize = (
     e: React.KeyboardEvent<HTMLTextAreaElement>
   ) => {
@@ -45,12 +51,15 @@ const AppSwitchableInput: React.FC<AppSwitchableInputProps> = ({
     e.currentTarget.style.height = `${e.currentTarget.scrollHeight}px`;
   };
 
+  //Хук, используемый для отслеживания клика вне инпута. Предназначен для изменения состояния компонента
+
   useOutsider(inputRef, () => {
     if (isInputActive) {
       setInputActive(false);
     }
   });
 
+  //Если в инпут ничего не было введено или инпут на данный момент не активен то рендерится обычное текстовое поле
   if (!value || isInputActive) {
     if (textarea) {
       return (

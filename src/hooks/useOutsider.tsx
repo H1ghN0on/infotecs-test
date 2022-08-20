@@ -1,10 +1,15 @@
 import React from "react";
 
+//Хук, отслеживающий нажатие вне заданного элемента
+
+//Получает ссылку на отслеживаемый элемент и коллбек
+
 const useOutsider = (ref: React.RefObject<any>, handler: (e?: any) => void) => {
+  //При нажатии на кнопку проверяется, был ли кликнут отслеживаемый элемент, и, если да, вызывается коллбек
+
   React.useEffect(() => {
     const handleOutsideClick = (e: MouseEvent | TouchEvent) => {
       if (ref.current && !ref.current.contains(e.target)) {
-        console.log("what");
         handler(e);
       }
     };
@@ -12,7 +17,6 @@ const useOutsider = (ref: React.RefObject<any>, handler: (e?: any) => void) => {
     document.addEventListener("mousedown", handleOutsideClick);
     document.addEventListener("touchstart", handleOutsideClick);
     return () => {
-      // Unbind the event listener on clean up
       document.removeEventListener("mousedown", handleOutsideClick);
       document.removeEventListener("touchstart", handleOutsideClick);
     };

@@ -2,7 +2,13 @@ import React from "react";
 import { NoteType } from "../App";
 import { NotesContextType } from "../contexts/NotesContext";
 
+//Хук для работы с записями
+
+//Получает на вход контекст с записями и возвращает почти все нижеописанные функции
+//Каждое изменение записей влечёт за собой сохранение в локальном хранилище браузера
+
 const useNotes = (notesContext: NotesContextType) => {
+  //обновление записей и сохранение в локальном хранлище
   const updateAndSaveToLocalStorage = (notes: NoteType[]) => {
     notesContext.setContext({
       ...notesContext,
@@ -10,6 +16,9 @@ const useNotes = (notesContext: NotesContextType) => {
     });
     localStorage.setItem("notes", JSON.stringify(notes));
   };
+
+  //Изменение имени записи
+
   const updateNoteName = (name: string) => {
     const notes = notesContext.notes.map((note) =>
       note.active ? { ...note, name } : note
@@ -18,12 +27,16 @@ const useNotes = (notesContext: NotesContextType) => {
     updateAndSaveToLocalStorage(notes);
   };
 
+  //Изменение описания записии
+
   const updateNoteText = (text: string) => {
     const notes = notesContext.notes.map((note) =>
       note.active ? { ...note, text } : note
     );
     updateAndSaveToLocalStorage(notes);
   };
+
+  //Изменение статуса записи
 
   const updateNoteStatus = (status: "pending" | "done" | "waiting") => {
     const notes = notesContext.notes.map((note) =>
@@ -33,16 +46,22 @@ const useNotes = (notesContext: NotesContextType) => {
     updateAndSaveToLocalStorage(notes);
   };
 
+  //Удаление записи
+
   const removeNote = (note: NoteType) => {
     const notes = notesContext.notes.filter((note) => !note.active);
 
     updateAndSaveToLocalStorage(notes);
   };
 
+  //Получение выбранной пользователем записи
+
   const activeNote = React.useMemo(
     () => notesContext.notes.find((note) => note.active),
     [notesContext.notes]
   );
+
+  //Обновление выбранной записи
 
   const setActiveNote = (note: NoteType) => {
     const notes = notesContext.notes.map((_note) =>
@@ -52,6 +71,8 @@ const useNotes = (notesContext: NotesContextType) => {
     );
     updateAndSaveToLocalStorage(notes);
   };
+
+  //Добавление новой записи
 
   const addNewNote = () => {
     const note: NoteType = {
@@ -68,6 +89,8 @@ const useNotes = (notesContext: NotesContextType) => {
 
     updateAndSaveToLocalStorage(notes);
   };
+
+  //Загрузка записей из локального хранилища
 
   const loadNotes = () => {
     const rawNotes = localStorage.getItem("notes");

@@ -8,6 +8,9 @@ interface NoteListProps {
   onNoteClick: (note: NoteType) => void;
 }
 
+//Список записей
+//Получает на вход список записей, функцию нажатия на запись и название класса для итерируемых элементов
+
 const NoteList: React.FC<NoteListProps> = ({
   notes,
   onNoteClick,

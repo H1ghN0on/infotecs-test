@@ -5,6 +5,9 @@ interface NoteFormDangerZoneProps {
   onRemove: () => void;
 }
 
+//Компонент опасной зоны. Один из составляющих формы редактирования записи.
+//Получает на вход функцию удаления записи
+
 const NoteFormDangerZone: React.FC<NoteFormDangerZoneProps> = ({
   onRemove,
 }) => {
