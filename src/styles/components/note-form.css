@@ -31,6 +31,7 @@
   font-weight: bold;
   margin-top: 20px;
   width: 100%;
+  word-break: break-word;
 }
 
 .note__text {
@@ -81,11 +82,9 @@
 }
 
 .note__status-btn {
-  padding: 15px 25px;
   background: white;
   border: 1px solid var(--secondary-color);
   outline: none;
-  border-radius: 25px;
   color: var(--primary-color);
   transition: 0.1s;
   width: 150px;
@@ -116,8 +115,6 @@
 }
 
 .note__danger-btn {
-  padding: 15px 25px;
   background: var(--danger-color);
-  border-radius: 25px;
   color: white;
 }

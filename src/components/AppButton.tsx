@@ -1,5 +1,7 @@
 import React from "react";
 
+import "../styles/components/app-button.css";
+
 interface AppButtonProps {
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
   className: string;
@@ -14,7 +16,7 @@ const AppButton: React.FC<AppButtonProps> = ({
   children,
 }) => {
   return (
-    <button name={name} className={`btn ${className}`} onClick={onClick}>
+    <button name={name} className={`app-btn ${className}`} onClick={onClick}>
       {children}
     </button>
   );

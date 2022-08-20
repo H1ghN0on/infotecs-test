@@ -6,6 +6,8 @@ import NoteList from "./NoteList";
 
 import "../styles/components/aside.css";
 
+import useSearch from "../hooks/useSearch";
+
 export type NoteType = {
   id: number;
   name: string;
@@ -24,11 +26,11 @@ const Aside = React.forwardRef<HTMLBaseElement, AsideProps>((props, ref) => {
 
   const [searchValue, setSearchValue] = React.useState<string>("");
 
-  const searchedNotes = React.useMemo(() => {
-    return notes.filter((note) =>
-      note.name.toLowerCase().includes(searchValue.toLowerCase())
-    );
-  }, [notes, searchValue]);
+  const { checkSearched, searchedValues } = useSearch(
+    searchValue,
+    notes,
+    "name"
+  );
 
   const handleSearchValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
@@ -46,14 +48,20 @@ const Aside = React.forwardRef<HTMLBaseElement, AsideProps>((props, ref) => {
             className="search__input"
           />
         </div>
-        <div onClick={addNewNote} className="aside__item add">
-          Добавить
-        </div>
-        <NoteList
-          noteClassName="aside__item note"
-          notes={searchedNotes}
-          onNoteClick={setActiveNote}
-        />
+        {!searchValue && (
+          <div onClick={addNewNote} className="aside__item add">
+            Добавить
+          </div>
+        )}
+        {checkSearched ? (
+          <NoteList
+            noteClassName="aside__item note"
+            notes={searchedValues}
+            onNoteClick={setActiveNote}
+          />
+        ) : (
+          <div className="note empty">Нет результатов</div>
+        )}
 
         <div
           className="aside__drag-border"

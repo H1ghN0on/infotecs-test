@@ -53,6 +53,12 @@ aside {
   font-family: inherit;
 }
 
+.note.empty {
+  text-align: center;
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
 .aside__item.note.active {
   color: white;
 }

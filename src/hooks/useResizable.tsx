@@ -31,7 +31,7 @@ const useResizable = (
         }
       }
     },
-    [isResizing]
+    [isResizing, minWidth, maxWidth]
   );
 
   React.useEffect(() => {
