@@ -1,16 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap");
-
 :root {
-  --aside-width: 200px;
+  --primary-color: #5b30d5;
+  --secondary-color: #b7a6e8;
+  --background-color: #f5f5f5;
+  --done-color: #138808;
+  --waiting-color: #919191;
+  --pending-color: #4169e1;
+  --danger-color: #f80000;
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: Raleway;
 }
 
 code {
@@ -23,12 +24,11 @@ button {
 }
 
 * {
-  font-family: Raleway;
   font-size: 1em;
 }
 
 body {
-  background: #f5f5f5;
+  background: var(--background-color);
   font-size: 16px;
 }
 
@@ -41,7 +41,7 @@ header {
   text-shadow: 0 0 2px #733bff;
   padding: 0 35px;
   background: white;
-  color: #5b30d5;
+  color: var(--primary-color);
   -webkit-box-shadow: 0px 4px 8px 0px rgba(181, 86, 247, 0.2);
   -moz-box-shadow: 0px 4px 8px 0px rgba(181, 86, 247, 0.2);
   box-shadow: 0px 4px 8px 0px rgba(181, 86, 247, 0.2);
@@ -55,217 +55,6 @@ header {
   margin-top: 80px;
 }
 
-aside {
-  position: fixed;
-  height: 100%;
-  overflow-y: auto;
-  scrollbar-width: thin; /* "auto" or "thin" */
-  scrollbar-color: #b7a6e8 silver; /* scroll thumb and track */
-}
-
-.aside__content {
-  position: relative;
-  padding: 0 30px;
-  padding-top: 20px;
-  padding-bottom: 100px;
-}
-
-.aside__content > .aside__item {
-  margin-top: 25px;
-  padding: 10px;
-  background: #b7a6e8;
-  border-radius: 15px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  transition: 0.1s;
-}
-
-.aside__item.note {
-  -webkit-box-shadow: 0px 0px 8px 0px rgba(34, 60, 80, 0.2);
-  -moz-box-shadow: 0px 0px 8px 0px rgba(34, 60, 80, 0.2);
-  box-shadow: 0px 0px 8px 0px rgba(34, 60, 80, 0.2);
-  background: white;
-}
-
-.aside__content .add {
-  text-align: center;
-  background: none;
-  color: #5b30d5;
-  font-weight: bold;
-  padding: 0;
-}
-
-.aside__content :first-child {
-  margin-top: 0;
-}
-
-.aside__content .search input {
-  outline: none;
-  width: 100%;
-  border: none;
-  color: white;
-  background-color: inherit;
-  outline: none;
-  font-family: inherit;
-}
-
-.aside__item.note.active {
-  color: white;
-}
-
-.aside__item.note.done.active {
-  background: green;
-}
-
-.aside__item.note.pending.active {
-  background: blue;
-}
-
-.aside__item.note.waiting.active {
-  background: grey;
-}
-
-.aside__content .aside__item.note {
-  background: white;
-}
-
-.aside__item.done {
-  color: green;
-}
-
-.aside__item.pending {
-  color: blue;
-}
-.aside__item.waiting {
-  color: grey;
-}
-
-.aside__drag-border {
-  min-height: 100vh;
-  width: 3px;
-  height: 100%;
-  background: #b7a6e8;
-  cursor: ew-resize;
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
 .page-wrapper {
   width: 100%;
-}
-
-.note {
-  padding: 40px;
-}
-
-.note__avatar img {
-  width: 225px;
-  height: 225px;
-  border-radius: 50%;
-}
-
-.note__info {
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-  padding: 0;
-}
-
-.note__name {
-  color: #5b30d5;
-  font-size: 1.8em;
-  font-weight: bold;
-  margin-top: 20px;
-  width: 100%;
-}
-
-.note__text {
-  margin-top: 20px;
-  color: #5b30d5;
-  min-height: 55px;
-  max-width: 100%;
-  word-break: break-word;
-}
-
-.note__input {
-  border: none;
-  background: inherit;
-  margin: 0;
-  padding: 0;
-  font-family: "Raleway";
-  outline: none;
-  width: 100%;
-}
-
-.note__name-input {
-  color: #5b30d5;
-  font-size: 1.8em;
-  font-weight: bold;
-  margin-top: 20px;
-}
-
-.note__text-input {
-  margin-top: 20px;
-  color: #5b30d5;
-  font-size: 1em;
-  resize: none;
-  overflow-y: hidden;
-}
-
-.note__status-list {
-  display: flex;
-  margin-top: 20px;
-  flex-wrap: wrap;
-}
-
-.note__status-list > .note__status-btn {
-  margin-left: 20px;
-}
-
-.note__status-list :first-child {
-  margin-left: 0;
-}
-
-.note__status-btn {
-  padding: 15px 25px;
-  background: white;
-  border: 1px solid #b7a6e8;
-  outline: none;
-  border-radius: 25px;
-  color: #5b30d5;
-  transition: 0.1s;
-  width: 150px;
-}
-
-.active {
-  color: white;
-  border: none;
-}
-
-.done.active {
-  background: green;
-}
-
-.pending.active {
-  background: blue;
-}
-
-.waiting.active {
-  background: grey;
-}
-
-.note__danger-zone {
-  display: flex;
-  margin-top: 20px;
-  padding-top: 20px;
-  border-top: 1px solid silver;
-}
-
-.note__danger-btn {
-  padding: 15px 25px;
-  background: red;
-  border-radius: 25px;
-  color: white;
 }

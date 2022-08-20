@@ -5,17 +5,17 @@ type Props = {
   children: React.ReactNode;
 };
 
-type Context = {
+export type NotesContextType = {
   notes: NoteType[];
   activeNote: NoteType | null;
-  setContext: React.Dispatch<React.SetStateAction<Context>>;
+  setContext: React.Dispatch<React.SetStateAction<NotesContextType>>;
 };
 
-const initialContext: Context = {
+const initialContext: NotesContextType = {
   notes: [
     {
       id: 1,
-      image: "chiaki.jpg",
+
       name: "Get Chiaki",
       text: "",
       status: "waiting",
@@ -23,7 +23,7 @@ const initialContext: Context = {
     },
     {
       id: 2,
-      image: "chiaki.jpg",
+
       name: "Take down shogun",
       text: "",
       status: "waiting",
@@ -31,7 +31,7 @@ const initialContext: Context = {
     },
     {
       id: 3,
-      image: "chiaki.jpg",
+
       name: "Remember the Aiden",
       text: "",
       status: "waiting",
@@ -39,7 +39,7 @@ const initialContext: Context = {
     },
     {
       id: 4,
-      image: "chiaki.jpg",
+
       name: "Rerun LMR",
       text: "ketrin ketrin ketrin ketrin ketrin ketrin ketrin ketrin ketrin ketrin ketrin ketrin ketrin",
       status: "done",
@@ -52,10 +52,11 @@ const initialContext: Context = {
   },
 };
 
-const NotesContext = React.createContext<Context>(initialContext);
+const NotesContext = React.createContext<NotesContextType>(initialContext);
 
 const NotesContextProvider = ({ children }: Props): JSX.Element => {
-  const [contextState, setContext] = React.useState<Context>(initialContext);
+  const [contextState, setContext] =
+    React.useState<NotesContextType>(initialContext);
 
   return (
     <NotesContext.Provider value={{ ...contextState, setContext }}>

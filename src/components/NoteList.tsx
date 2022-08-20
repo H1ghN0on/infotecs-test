@@ -1,5 +1,5 @@
 import React from "react";
-import { NotesContext } from "../contexts/NotesContext";
+
 import { NoteType } from "./Aside";
 
 interface NoteListProps {

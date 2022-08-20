@@ -1,11 +1,13 @@
 import React from "react";
 import { NotesContext } from "../contexts/NotesContext";
-import useResizable from "../hooks/useResizable";
+import useNotesContext from "../hooks/useNotesContext";
+
 import NoteList from "./NoteList";
+
+import "../styles/components/aside.css";
 
 export type NoteType = {
   id: number;
-  image: string;
   name: string;
   text: string;
   status: "pending" | "done" | "waiting";
@@ -18,47 +20,18 @@ interface AsideProps {
 
 const Aside = React.forwardRef<HTMLBaseElement, AsideProps>((props, ref) => {
   const notesContext = React.useContext(NotesContext);
+  const { addNewNote, setActiveNote, notes } = useNotesContext(notesContext);
 
   const [searchValue, setSearchValue] = React.useState<string>("");
 
   const searchedNotes = React.useMemo(() => {
-    return notesContext.notes.filter((note) =>
+    return notes.filter((note) =>
       note.name.toLowerCase().includes(searchValue.toLowerCase())
     );
-  }, [notesContext.notes, searchValue]);
+  }, [notes, searchValue]);
 
   const handleSearchValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
-  };
-
-  const handleNoteClick = (note: NoteType) => {
-    notesContext.setContext({
-      ...notesContext,
-      notes: notesContext.notes.map((_note) =>
-        _note.id === note.id
-          ? { ..._note, active: true }
-          : { ..._note, active: false }
-      ),
-    });
-  };
-
-  const handleNoteAddClick = () => {
-    const note = {
-      id: Date.now(),
-      image: "",
-      name: "",
-      text: "",
-      status: "waiting" as "waiting",
-      active: true,
-    };
-
-    notesContext.setContext({
-      ...notesContext,
-      notes: [
-        note,
-        ...notesContext.notes.map((_note) => ({ ..._note, active: false })),
-      ],
-    });
   };
 
   return (
@@ -73,13 +46,13 @@ const Aside = React.forwardRef<HTMLBaseElement, AsideProps>((props, ref) => {
             className="search__input"
           />
         </div>
-        <div onClick={handleNoteAddClick} className="aside__item add">
+        <div onClick={addNewNote} className="aside__item add">
           Добавить
         </div>
         <NoteList
           noteClassName="aside__item note"
           notes={searchedNotes}
-          onNoteClick={handleNoteClick}
+          onNoteClick={setActiveNote}
         />
 
         <div

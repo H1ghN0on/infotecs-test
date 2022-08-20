@@ -1,86 +1,37 @@
 import React from "react";
 import { NotesContext } from "../contexts/NotesContext";
+import useNotesContext from "../hooks/useNotesContext";
 import AppSwitchableInput from "./AppSwitchableInput";
 import { NoteType } from "./Aside";
 import NoteFormDangerZone from "./NoteFormDangerZone";
 import NoteFormStatusList from "./NoteFormStatusList";
-
+import "../styles/components/note-form.css";
 interface NoteFormProps {
   activeNote: NoteType;
 }
 
 const NoteForm: React.FC<NoteFormProps> = ({ activeNote }) => {
   const notesContext = React.useContext(NotesContext);
+  const { updateNoteName, updateNoteText, updateNoteStatus, removeNote } =
+    useNotesContext(notesContext);
 
-  const handleNoteNameChange = (name: string) => {
-    const notes = notesContext.notes.map((note) =>
-      note.active ? { ...note, name } : note
-    );
-
-    notesContext.setContext({
-      ...notesContext,
-      notes,
-    });
-  };
-
-  const handleNoteTextChange = (text: string) => {
-    const notes = notesContext.notes.map((note) =>
-      note.active ? { ...note, text } : note
-    );
-    notesContext.setContext({
-      ...notesContext,
-      notes,
-    });
-  };
-
-  const handleNoteStatusChange = (status: "pending" | "done" | "waiting") => {
-    const notes = notesContext.notes.map((note) =>
-      note.active ? { ...note, status } : note
-    );
-
-    notesContext.setContext({
-      ...notesContext,
-      notes,
-    });
-  };
-
-  const handleNoteImageChange = (src: string) => {
-    const notes = notesContext.notes.map((note) =>
-      note.active ? { ...note, image: src } : note
-    );
-    notesContext.setContext({
-      ...notesContext,
-      notes,
-    });
-  };
-
-  const handleNoteRemove = () => {
-    const notes = notesContext.notes.filter((note) => !note.active);
-
-    notesContext.setContext({
-      ...notesContext,
-      notes,
-    });
+  const handleRemoveClick = () => {
+    removeNote(activeNote);
   };
 
   return (
     <div className="note">
-      {/* <NoteFormAvatar
-        className="note__avatar"
-        onChange={handleNoteImageChange}
-        src={activeNote.image}
-      /> */}
       <div className="note__info">
         <AppSwitchableInput
           value={activeNote.name}
-          onChange={handleNoteNameChange}
+          onChange={updateNoteName}
           spanClassName="note__name"
           inputClassName="note__input note__name-input"
           placeholder="Название..."
         />
         <AppSwitchableInput
           value={activeNote.text}
-          onChange={handleNoteTextChange}
+          onChange={updateNoteText}
           spanClassName="note__text"
           inputClassName="note__input note__text-input"
           textarea
@@ -90,9 +41,9 @@ const NoteForm: React.FC<NoteFormProps> = ({ activeNote }) => {
 
       <NoteFormStatusList
         status={activeNote.status}
-        onStatusChange={handleNoteStatusChange}
+        onStatusChange={updateNoteStatus}
       />
-      <NoteFormDangerZone onRemove={handleNoteRemove} />
+      <NoteFormDangerZone onRemove={handleRemoveClick} />
     </div>
   );
 };

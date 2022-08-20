@@ -1,0 +1,123 @@
+.note {
+  padding: 40px;
+}
+
+.note.inactive {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 2em;
+  font-weight: bold;
+  color: #a181fc;
+}
+
+.note__avatar img {
+  width: 225px;
+  height: 225px;
+  border-radius: 50%;
+}
+
+.note__info {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+.note__name {
+  color: var(--primary-color);
+  font-size: 1.8em;
+  font-weight: bold;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.note__text {
+  margin-top: 20px;
+  color: var(--primary-color);
+  min-height: 55px;
+  max-width: 100%;
+  word-break: break-word;
+}
+
+.note__input {
+  border: none;
+  background: inherit;
+  margin: 0;
+  padding: 0;
+  font-family: "Raleway";
+  outline: none;
+  width: 100%;
+}
+
+.note__name-input {
+  color: var(--primary-color);
+  font-size: 1.8em;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.note__text-input {
+  margin-top: 20px;
+  color: var(--primary-color);
+  font-size: 1em;
+  resize: none;
+  overflow-y: hidden;
+}
+
+.note__status-list {
+  display: flex;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.note__status-list > .note__status-btn {
+  margin-left: 20px;
+}
+
+.note__status-list :first-child {
+  margin-left: 0;
+}
+
+.note__status-btn {
+  padding: 15px 25px;
+  background: white;
+  border: 1px solid var(--secondary-color);
+  outline: none;
+  border-radius: 25px;
+  color: var(--primary-color);
+  transition: 0.1s;
+  width: 150px;
+}
+
+.active {
+  color: white;
+  border: none;
+}
+
+.done.active {
+  background: var(--done-color);
+}
+
+.pending.active {
+  background: var(--pending-color);
+}
+
+.waiting.active {
+  background: var(--waiting-color);
+}
+
+.note__danger-zone {
+  display: flex;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--secondary-color);
+}
+
+.note__danger-btn {
+  padding: 15px 25px;
+  background: var(--danger-color);
+  border-radius: 25px;
+  color: white;
+}
