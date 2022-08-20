@@ -1,6 +1,6 @@
 import React from "react";
 
-import { NoteType } from "./Aside";
+import { NoteType } from "../App";
 
 interface NoteListProps {
   notes: NoteType[];

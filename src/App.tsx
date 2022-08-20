@@ -5,10 +5,22 @@ import { NotesContext } from "./contexts/NotesContext";
 import useNotesContext from "./hooks/useNotesContext";
 import Layout from "./layout/Layout";
 
+export type NoteType = {
+  id: number;
+  name: string;
+  text: string;
+  status: "pending" | "done" | "waiting";
+  active: boolean;
+};
+
 function App() {
   const notesContext = React.useContext(NotesContext);
 
-  const { activeNote } = useNotesContext(notesContext);
+  const { activeNote, loadNotes } = useNotesContext(notesContext);
+
+  React.useEffect(() => {
+    loadNotes();
+  }, []);
 
   return (
     <Layout>

@@ -8,13 +8,6 @@ import "../styles/components/aside.css";
 
 import useSearch from "../hooks/useSearch";
 
-export type NoteType = {
-  id: number;
-  name: string;
-  text: string;
-  status: "pending" | "done" | "waiting";
-  active: boolean;
-};
 interface AsideProps {
   resizableWidth: number;
   startResizing: (e: any) => void;

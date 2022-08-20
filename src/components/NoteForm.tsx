@@ -2,7 +2,7 @@ import React from "react";
 import { NotesContext } from "../contexts/NotesContext";
 import useNotesContext from "../hooks/useNotesContext";
 import AppSwitchableInput from "./AppSwitchableInput";
-import { NoteType } from "./Aside";
+import { NoteType } from "../App";
 import NoteFormDangerZone from "./NoteFormDangerZone";
 import NoteFormStatusList from "./NoteFormStatusList";
 import "../styles/components/note-form.css";

@@ -1,5 +1,5 @@
 import React from "react";
-import { NoteType } from "../components/Aside";
+import { NoteType } from "../App";
 
 type Props = {
   children: React.ReactNode;
@@ -12,40 +12,7 @@ export type NotesContextType = {
 };
 
 const initialContext: NotesContextType = {
-  notes: [
-    {
-      id: 1,
-
-      name: "Get Chiaki",
-      text: "",
-      status: "waiting",
-      active: false,
-    },
-    {
-      id: 2,
-
-      name: "Take down shogun",
-      text: "",
-      status: "waiting",
-      active: false,
-    },
-    {
-      id: 3,
-
-      name: "Remember the Aiden",
-      text: "",
-      status: "waiting",
-      active: false,
-    },
-    {
-      id: 4,
-
-      name: "Rerun LMR",
-      text: "ketrin ketrin ketrin ketrin ketrin ketrin ketrin ketrin ketrin ketrin ketrin ketrin ketrin",
-      status: "done",
-      active: false,
-    },
-  ],
+  notes: [],
   activeNote: null,
   setContext: (): void => {
     throw new Error("setContext function must be overridden");
