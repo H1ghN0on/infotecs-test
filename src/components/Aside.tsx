@@ -1,12 +1,11 @@
 import React from "react";
 import { NotesContext } from "../contexts/NotesContext";
 import useNotesContext from "../hooks/useNotesContext";
+import useSearch from "../hooks/useSearch";
 
-import NoteList from "./NoteList";
+import { NoteList } from "../components";
 
 import "../styles/components/aside.css";
-
-import useSearch from "../hooks/useSearch";
 
 interface AsideProps {
   resizableWidth: number;

@@ -1,9 +1,9 @@
 import React from "react";
-import NoteForm from "./components/NoteForm";
-import NoteFormInactive from "./components/NoteFormInactive";
+
+import { NoteFormInactive, NoteForm } from "./components";
 import { NotesContext } from "./contexts/NotesContext";
 import useNotesContext from "./hooks/useNotesContext";
-import Layout from "./layout/Layout";
+import { Layout } from "./layout";
 
 export type NoteType = {
   id: number;
