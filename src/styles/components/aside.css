@@ -30,6 +30,7 @@ aside {
   box-shadow: 0px 0px 8px 0px rgba(34, 60, 80, 0.2);
   background: white;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .aside__content .add {

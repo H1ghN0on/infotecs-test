@@ -9,7 +9,9 @@ const NoteFormDangerZone: React.FC<NoteFormDangerZoneProps> = ({
   onRemove,
 }) => {
   const handleRemoveButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    onRemove();
+    if (window.confirm("Вы действительно хотите удалить эту запись?")) {
+      onRemove();
+    }
   };
 
   return (
