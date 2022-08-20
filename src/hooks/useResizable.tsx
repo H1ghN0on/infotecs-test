@@ -20,6 +20,7 @@ const useResizable = (
   const resize = React.useCallback(
     (mouseMoveEvent: any) => {
       if (isResizing) {
+        window.getSelection()?.removeAllRanges();
         const width =
           mouseMoveEvent.clientX -
           elementRef.current.current.getBoundingClientRect().left;

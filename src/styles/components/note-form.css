@@ -37,7 +37,7 @@
 .note__text {
   margin-top: 20px;
   color: var(--primary-color);
-  min-height: 55px;
+  min-height: 65px;
   max-width: 100%;
   word-break: break-word;
 }
@@ -50,6 +50,10 @@
   font-family: "Raleway";
   outline: none;
   width: 100%;
+}
+
+.note__input::placeholder {
+  color: var(--placeholder-color);
 }
 
 .note__name-input {
@@ -65,6 +69,7 @@
   font-size: 1em;
   resize: none;
   overflow-y: hidden;
+  min-height: 65px;
 }
 
 .note__status-list {

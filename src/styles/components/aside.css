@@ -29,6 +29,7 @@ aside {
   -moz-box-shadow: 0px 0px 8px 0px rgba(34, 60, 80, 0.2);
   box-shadow: 0px 0px 8px 0px rgba(34, 60, 80, 0.2);
   background: white;
+  cursor: pointer;
 }
 
 .aside__content .add {
@@ -37,10 +38,15 @@ aside {
   color: var(--primary-color);
   font-weight: bold;
   padding: 0;
+  cursor: pointer;
 }
 
 .aside__content :first-child {
   margin-top: 0;
+}
+
+.aside__content .search {
+  text-overflow: clip;
 }
 
 .aside__content .search input {
@@ -51,6 +57,10 @@ aside {
   background-color: inherit;
   outline: none;
   font-family: inherit;
+}
+
+.aside__content .search input::placeholder {
+  color: white;
 }
 
 .note.empty {
